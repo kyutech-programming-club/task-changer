@@ -3,16 +3,15 @@
     <meta charset="UTF-8">
     <title>Button Sample</title>
  </head>
-
  <body><br>
+  <p>タスク記入</p>
   <form action="/cgi-bin/sample.py" method="POST">
     <input type="text" name="foo">
     <input type="time" min="0:00" max="23:59" name="bar">
     <input type="submit">
   </form><br><br>
-
-    <table class="table-striped
-    ">
+  <h3>＜タスク一覧＞</h3>
+    <table class="table-bordered">
         <thead>
             <tr>
               <th>#</th>
