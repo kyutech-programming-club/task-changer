@@ -28,15 +28,16 @@ if __name__ == '__main__':
     cv2.namedWindow(ORG_WINDOW_NAME)
     cv2.namedWindow(GAUSSIAN_WINDOW_NAME)
 
-    flame = 0
+    notFaceFlame = 0
+    isNotificaion = False
 
     # 変換処理ループ
     while end_flag == True:
 
         # 顔を認識しているかどうか
         isFace = False
-        if (flame > 30):
-            flame = 0
+        if (notFaceFlame > 30):
+            notFaceFlame = 0
 
         # 画像の取得と顔の検出
         img = c_frame
@@ -46,22 +47,25 @@ if __name__ == '__main__':
 
         # 検出した顔に印を付ける
         for (x, y, w, h) in face_list:
-            isFace = True
-            flame = 0
             color = (0, 0, 225)
             pen_w = 3
             cv2.rectangle(img_gray, (x, y), (x+w, y+h), color, thickness = pen_w)
+            isFace = True
+            notFaceFlame = 0
+            isNotificaion = False
 
-        # 顔を検出しなくなった時にビーブ音を鳴らす
+        # 顔を検出していないフレームの時１を足す
         if (isFace == False):
-            flame += 1
+            notFaceFlame += 1
         
-        if (flame > 30):
+        # フレームの合計が一定数を超えた時、通知を出す
+        if (notFaceFlame > 30 and isNotificaion == False):
             notification.notify(
                 title = "デスクトップ通知",
                 message = "これはテストです。通知が表示されます。",
                 timeout = 5
             )
+            isNotificaion = True
         
         # フレーム表示
         cv2.imshow(ORG_WINDOW_NAME, c_frame)
@@ -78,3 +82,4 @@ if __name__ == '__main__':
     # 終了処理
     cv2.destroyAllWindows()
     cap.release()
+    
