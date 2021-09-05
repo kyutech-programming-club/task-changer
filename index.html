@@ -7,6 +7,7 @@
   <p>タスク記入</p>
   <form action="/cgi-bin/sample.py" method="POST">
     <input type="text" name="foo">
+    <input type="date" min="01-01" max="12-31">
     <input type="time" min="0:00" max="23:59" name="bar">
     <input type="submit">
   </form><br><br>
@@ -18,6 +19,7 @@
               <th>タスク</th>
               <th>締め切り</th>
               <th>チェック</th>
+              <th>現在のタスク</th>
             </tr>
         </thead>
         <tbody> 
@@ -28,18 +30,33 @@
               <td style="width:90px"><div class="custom-control custom-checkbox">
                 <input class="custom-control-input" type="checkbox" id="custom-check1">
                 <label class="custom-control-label" for="custom-check1"></label></div></td>
+              <td style="width:100px"><div class="btn-group-toggle" data-toggle="buttons">
+                <label class="btn btn-danger active">
+                  <input type="checkbox" checked autocomplete="off">Now
+                </label>
+              </div></td>
             </tr>
             <tr>
               <th scope="row">2</th>
               <td>あ</td>
               <td>あ</td>
               <td>あ</td>
+              <td><div class="btn-group-toggle" data-toggle="buttons">
+                <label class="btn btn-danger active">
+                  <input type="checkbox" checked autocomplete="off">Now
+                </label>
+              </div></td>
             </tr>
             <tr>
               <th scope="row">3</th>
               <td>あ</td>
               <td>あ</td>
               <td>あ</td>
+              <td><div class="btn-group-toggle" data-toggle="buttons">
+                <label class="btn btn-danger active">
+                  <input type="checkbox" checked autocomplete="off">Now
+                </label>
+              </div></td>
             </tr>
     </table>
  </body>
@@ -47,7 +64,7 @@
 
 
 
-
+<a class="btn btn-outline-primary">Now</a>
 
 <!doctype html>
 <html lang="ja">
